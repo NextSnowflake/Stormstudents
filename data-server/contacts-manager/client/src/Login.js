@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // https://ant.design/components/form/
 import './Login.css'
+import { login } from './auth.js';
 
 class NormalLoginForm extends Component {
   handleSubmit = e => {
@@ -11,7 +12,9 @@ class NormalLoginForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.history.push("/dashboard");
       }
+      this.props.handleLogin(values.username, values.password)
     });
   };
 
